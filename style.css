@@ -249,3 +249,43 @@ form button {
 form button:hover {
     background-color: #3e8ee0;
 }
+
+.produit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    max-width: 500px;
+    width: 100%;
+}
+
+.produit-image {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.produit-image img {
+    width: 100%;
+    position: center;
+}
+
+.produit-details {
+    flex: 2;
+}
+
+.produit-details h2 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.produit-details p {
+    margin: 0;
+    color: #666;
+}
+
+.produit-details form {
+    margin-top: 10px;
+}

@@ -63,13 +63,34 @@ class CatalogueAction
 
         // Affichage des produits
         foreach ($produits as $produit) {
-            $html .= '<div class="produit"><h2>' . htmlspecialchars($produit['nom']) . '</h2><img src="' . htmlspecialchars($produit['image']) . '"><p>' . htmlspecialchars($produit['description']) . '</p><p>' . htmlspecialchars($produit['prix']) . ' €</p>
-            <form method="post">
-              <input type="hidden" name="produit_id" value="' . htmlspecialchars($produit['id']) . '">
-              <button type="submit" name="ajouter_au_panier">Ajouter au panier</button>
-            </form>
+            $html .= '<div class="produit">
+                <div class="produit-image">
+                    <img src="' . htmlspecialchars($produit['file']) . '" alt="' . htmlspecialchars($produit['nom']) . '">
+                </div>
+                <div class="produit-details">
+                    <h2>' . htmlspecialchars($produit['nom']) . '</h2>
+                    <p>' . htmlspecialchars($produit['description']) . '</p>
+                    <p>' . htmlspecialchars($produit['prix']) . ' €</p>
+                    <form method="post">
+                        <input type="hidden" name="produit_id" value="' . htmlspecialchars($produit['id']) . '">
+                        <button type="submit" name="ajouter_au_panier">Ajouter au panier</button>
+                    </form>
+                </div>
             </div>';
+
         }
+
+        // Affichage de la pagination
+        $html .= '<div class="pagination">';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $url = '/catalogue?page=' . $i;
+            if ($search) {
+                $url .= '&q=' . urlencode($search);
+            }
+            $class = ($i == $page) ? 'active' : '';
+            $html .= '<a href="' . $url . '" class="' . $class . '">' . $i . '</a>';
+        }
+        $html .= '</div>';
 
         // Traitement du formulaire d'ajout au panier
         if (isset($_POST['ajouter_au_panier'])) {
