@@ -28,7 +28,7 @@ class CatalogueAction
         }
 
         // Récupération du nombre total de produits
-        $requete = $pdo->prepare('SELECT COUNT(*) AS total FROM produits '.$where_clause);
+        $requete = $pdo->prepare('SELECT COUNT(*) AS total FROM produit '.$where_clause);
         $requete->execute($query_params);
         $resultat = $requete->fetch();
         $total_produits = $resultat['total'];
@@ -48,10 +48,10 @@ class CatalogueAction
         $offset = ($page - 1) * $produits_par_page;
 
         // Récupération des produits pour la page demandée
-        $requete = $pdo->prepare('SELECT * FROM produits '.$where_clause.' ORDER BY id LIMIT :offset, :limite');
-        $requete->bindValue('offset', $offset, PDO::PARAM_INT);
-        $requete->bindValue('limite', $produits_par_page, PDO::PARAM_INT);
-        $requete->execute($query_params);
+        $requete = $pdo->prepare('SELECT * FROM produit '.$where_clause.' ORDER BY id LIMIT :offset, :limite');
+        $requete->bindValue('offset', $offset, $pdo::PARAM_INT);
+        $requete->bindValue('limite', $produits_par_page, $pdo::PARAM_INT);
+        $requete->execute();
         $produits = $requete->fetchAll();
 
         // Affichage de la barre de recherche
