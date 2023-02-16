@@ -40,11 +40,24 @@ class CatalogueAction
         $requete->execute();
         $produits = $requete->fetchAll();
 
-            // Affichage des produits
+        // Affichage des produits
         foreach ($produits as $produit) {
-            $html += '<div class="produit"><h2>' . htmlspecialchars($produit['nom']) . '</h2><img src="' . htmlspecialchars($produit['image']) . '"><p>' . htmlspecialchars($produit['description']) . '</p><p>' . htmlspecialchars($produit['prix']) . ' €</p>
-<button>Ajouter au panier</button>
-</div>';
+            $html .= '<div class="produit"><h2>' . htmlspecialchars($produit['nom']) . '</h2><img src="' . htmlspecialchars($produit['image']) . '"><p>' . htmlspecialchars($produit['description']) . '</p><p>' . htmlspecialchars($produit['prix']) . ' €</p>
+            <form method="post">
+              <input type="hidden" name="produit_id" value="' . htmlspecialchars($produit['id']) . '">
+              <button type="submit" name="ajouter_au_panier">Ajouter au panier</button>
+            </form>
+            </div>';
+        }
+
+        // Traitement du formulaire d'ajout au panier
+        if (isset($_POST['ajouter_au_panier'])) {
+            $produit_id = $_POST['produit_id'];
+            $requete = $pdo->prepare('SELECT * FROM produits WHERE id = :id');
+            $requete->bindValue('id', $produit_id, PDO::PARAM_INT);
+            $requete->execute();
+            $produit = $requete->fetch();
+            $_SESSION['panier'] += $produits;
         }
 
         return $html;
