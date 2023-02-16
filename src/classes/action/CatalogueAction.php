@@ -7,7 +7,7 @@ use iutnc\crazyCharlieDay\db\ConnectionFactory;
 class CatalogueAction
 {
     public function execute(): string{
-        $html = '';
+        $html = '<h1>Catalogue</h1>';
         // Connexion à la base de données
         $pdo = ConnectionFactory::makeConnection();
 
