@@ -1,219 +1,251 @@
+/* Utilisation de la police d'écriture Poppins */
 body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #202020;
+    color: #fff;
+}
+
+
+/* Styles pour le logo */
+#logo {
+    display: block;
+    margin: 1em;
+    width: 100px;
+    height: 100px;
+}
+
+/* Styles pour le menu de navigation */
+nav {
+    background-color: #292929;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
     margin: 0;
-    text-align: center;
-
-    background-color: #171717aa;
-    color: black;
-    font-family: Arial, serif;
-
 }
 
-.serie{
-    display: inline-block;
-    width: 300px;
-}
-
-.content a:visited{
-    color: #FE0002;
-}
-
-.content a{
+nav ul li a {
+    display: block;
+    padding: 1em;
     text-decoration: none;
-    color: #FE0002;
+    color: #fff;
 }
 
-.content a:hover{
-    color: #FE0002;
-}
-
-.content a:active{
-    color: #FE0002;
-}
-.content{
-     position: absolute;
-     width: 75%;
-     left: 50%;
-     transform: translate(-50%);
-     background-color: #444444dd;
-     color: #43C6DB;
-     border-radius: 40px;
-     padding: 20px;
-     margin-top: 5%;
- }
-
-.menu{
-    display : flex;
-    align-items: center;
-    width: 100%;
-    height: 75px;
-    background-color: #444444;
-    text-align: left;
-}
-
-nav div{
-    display :flex;
-    justify-content: center;
-    align-items: center;
-}
-
-img{
-    width: 65%;
-    height: 35%;
+nav ul li:hover {
+    background-color: #444;
 }
 
 
-.element{
-    display: list-item;
-    text-align: -webkit-match-parent;
-    margin-left: 70px;
-    font-weight: bold;
+/* Styles pour la liste de produits */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.navList{
-    list-style-type: none;
-    display : flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 72em;
+li {
+    margin: 1em 0;
+    padding: 1em;
+    background-color: #292929;
+    color: #fff;
 }
 
-.accueil-action > a{
-    size: 32pt;
+/* Styles pour la liste de produits : effets de transition au survol */
+li:hover {
+    background-color: #444;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Styles pour le menu déroulant */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #292929;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
     text-decoration: none;
+    display: block;
 }
 
-.element a:visited{
-    color: #fbf8f1;
+.dropdown-content a:hover {
+    background-color: #444;
 }
 
-.element a{
-    text-decoration: none;
-    color: #fbf8f1;
-}
 
-.element a:hover{
-    color: #fbf8f1;
-}
-
-.element a:active{
-    color: #fbf8f1;
-}
-
-div {
-    display: inline-block;
-}
-
-#amenu{
-    color: black;
-    text-decoration: none ;
-}
-
-#champ th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    color: black;
-    font-size: x-large;
-}
-#champ {
-    font-family: Arial, Helvetica, sans-serif;
+/* Styles pour la liste de produits */
+table {
     border-collapse: collapse;
     width: 100%;
+    margin-bottom: 2em;
 }
 
-#champ tr {
-    font-size: large;
-}
-#champ td:nth-child(even){background-color: #b6b6b6;}
-#serie:hover {background-color: #7b3c3c}
-
-:root{
-    --hauteur-menu: 60px;
-}
-#deroule {
-    width: 100%;
-    font-size: 18px;
-    position: sticky;
-    top: 0;
-    border-top: 1px solid black;
-}
-#deroule > #serie {
-    display: flex;
-    text-align: center;
-    box-shadow: 0 1px 2px 1px rgba(0,0,0,0.3);
-    height: var(--hauteur-menu);
-}
-#deroule #serie {
-    list-style-type: none;
-}
-
-#deroule > #serie > li {
-    background-color: white;
-    position: relative;
-    height: 100%;
-    flex: 1;
-}
-#deroule > #serie > li > a {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
-.menu-deroulant > a:after{
-    content: '❯';
-    font-size: 15px;
-    margin-left: 7px;
-    display: inline-block;
-}
-.sous-menu {
-    margin-top: var(--hauteur-menu);
-    width: 100%;
-    margin-left: -40px;
+th, td {
     text-align: left;
-    background-color: white;
-    border-radius: 2px;
-    overflow: hidden;
-    max-height: 0;
+    padding: 1em;
+    border-bottom: 1px solid #555;
 }
 
-.sous-menu > li > a {
-    height: 50px;
-    padding-left: 20px;
+th {
+    background-color: #292929;
+    color: #fff;
+}
+
+td {
+    background-color: #202020;
+    color: #fff;
+}
+
+/* Styles pour la quantité de produit */
+input {
+    width: 50px;
+}
+
+/* Styles pour la somme totale */
+#total {
+    font-size: 1.5em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: right;
+}
+
+
+/* Styles pour le contenu principal */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+/* Styles pour le pied de page */
+footer {
+    background-color: #292929;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin: 1em;
+}
+
+/* Styles pour les titres de produit */
+h2 {
+    margin: 0;
+}
+
+/* Styles pour les images de produit */
+img {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 1em;
+    display: block;
+}
+
+/* Styles pour les descriptions et prix de produit */
+p {
+    margin: 0.5em 0;
+}
+
+/* Styles pour les boutons d'ajout au panier */
+button {
+    background-color: #55aaff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin: 1em;
+    cursor: pointer;
+}
+
+/* Styles pour le bouton de validation du panier */
+#validation {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 1em;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 25px;
+    background-color: #55aaff;
+    color: #fff;
+    cursor: pointer;
+}
+
+#validation:hover {
+    background-color: #3876bf;
+}
+
+button:hover {
+    background-color: #3876bf;
+}
+
+
+/* Styles pour les liens */
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #ccc;
+}
+
+/* Styles pour le formulaire de connexion */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #292929;
+}
+
+form h2 {
+    margin: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 1em;
+}
+
+form input[type="email"]{
+    display: block;
     width: 100%;
-    align-items: center;
-    display: flex;
-}
-#deroule > #serie > li:hover > a{
-    color: #2169EC;
+    padding: 0.5em;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 1em;
 }
 
-@keyframes rotationFleche {
-    0% {
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(90deg);
-    }
+form input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 1em;
 }
-.menu-deroulant:hover > a:after{
-    animation: rotationFleche 0.2s linear forwards;
+
+form button {
+    background-color: #55aaff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    cursor: pointer;
 }
-@keyframes apparitionSousMenu {
-    0% {
-        box-shadow: 0 3px 3px 1px rgba(0,0,0,0);
-        border-top: 3px solid #2169EC;
-    }
-    30% {
-        box-shadow: 0 3px 3px 1px rgba(0,0,0,0.3);
-    }
-    100% {
-        max-height: 50em;
-        border-top: 3px solid #2169EC;
-        box-shadow: 0 3px 3px 1px rgba(0,0,0,0.3);
-    }
-}
-.menu-deroulant:hover > .sous-menu {
-    animation: apparitionSousMenu 1s forwards;
+
+form button:hover {
+    background-color: #3e8ee0;
 }
