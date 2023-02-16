@@ -4,6 +4,7 @@ namespace iutnc\crazyCharlieDay\dispatch;
 
 use iutnc\crazyCharlieDay\action\AccueilAction;
 use iutnc\crazyCharlieDay\action\ActivateAccountAction;
+use iutnc\crazyCharlieDay\action\CompteAction;
 use iutnc\crazyCharlieDay\action\ModifyEmailAction;
 use iutnc\crazyCharlieDay\action\ModifyPasswordAction;
 use iutnc\crazyCharlieDay\action\RegisterAction;
@@ -63,6 +64,10 @@ class Dispatcher
                 $action = new ActivateAccountAction();
                 $html = $action->execute();
                 break;
+            case 'compte':
+                $action = new CompteAction();
+                $html = $action->execute();
+                break;
             default:
                 $action = new AccueilAction();
                 $html = $action->execute();
@@ -82,7 +87,11 @@ class Dispatcher
         if (isset($_SESSION['user_connected']))
         {
             $inscription = '';
-            $connection = '<li class="element"><a href="?action=signout">Se Deconnecter</a></li>';
+            $connection = '
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="panier.html">Panier</a></li>
+        <li><a href="?action=compte">Compte</a></li>
+        <li class="element"><a href="?action=signout">Se Deconnecter</a></li>';
         }
         else
         {
@@ -99,7 +108,6 @@ class Dispatcher
                 </head>
                 <body>
                     <nav class="menu">
-                        <div></div>
                         <ul class="navList">
                             <li class="element"><a href="index.php">Accueil</a></li>
                             $inscription

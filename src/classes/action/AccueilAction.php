@@ -22,15 +22,15 @@ class AccueilAction extends Action
                 $mail = $user->email;
 
                 $html = <<< END
-                    <h1>Bienvenue $mail</h1>
-                    <h2>Veuillez choisir une action dans la liste ci dessous</h2>
-                    
-                    <div class="accueil-action">
-                        <ul>
-                            <li><a href="?action=modify-passwd">Changer de mot de passe</a></li>
-                            <li><a href="?action=modify-email">Changer d'adresse mail</a></li>
-                        </ul>
-                    </div> <br>
+                    <main>
+                      <h1>Bienvenue $mail sur Court-circuit !</h1>
+                      <p>Vous êtes actuellement sur la page de notre boutique Click'n Collect.
+                        <br>
+                        Vous trouverez ici tous les produits que nous proposons à la vente en magasin.
+                    </main>
+                    <footer>
+                      <p>&copy; 2023 Court-circuit</p>
+                    </footer>
                 
             END;
 
