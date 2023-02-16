@@ -6,6 +6,8 @@ use iutnc\crazyCharlieDay\db\ConnectionFactory;
 
 class CatalogueAction
 {
+    public $images;
+
     public function execute(): string{
         $html = '<h1>Catalogue</h1>';
         // Connexion à la base de données
@@ -63,9 +65,10 @@ class CatalogueAction
 
         // Affichage des produits
         foreach ($produits as $produit) {
-            $html .= '<div class="produit">
+            $html .=
+                '<div class="produit">
                 <div class="produit-image">
-                    <img src="' . htmlspecialchars($produit['file']) . '" alt="' . htmlspecialchars($produit['nom']) . '">
+                    <img alt="img" src="./images/'. htmlspecialchars($produit['file']) .'">
                 </div>
                 <div class="produit-details">
                     <h2>' . htmlspecialchars($produit['nom']) . '</h2>
