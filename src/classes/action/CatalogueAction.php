@@ -52,12 +52,13 @@ class CatalogueAction
 
         // Traitement du formulaire d'ajout au panier
         if (isset($_POST['ajouter_au_panier'])) {
+            session_start();
             $produit_id = $_POST['produit_id'];
             $requete = $pdo->prepare('SELECT * FROM produits WHERE id = :id');
             $requete->bindValue('id', $produit_id, PDO::PARAM_INT);
             $requete->execute();
             $produit = $requete->fetch();
-            $_SESSION['panier'] += $produits;
+            $_SESSION['panier'][] += $produit;
         }
 
         return $html;
