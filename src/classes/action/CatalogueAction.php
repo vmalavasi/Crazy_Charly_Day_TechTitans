@@ -11,34 +11,55 @@ class CatalogueAction
         // Connexion à la base de données
         $pdo = ConnectionFactory::makeConnection();
 
-// Nombre maximum de produits à afficher par page
+        // Traitement de la recherche
+        $search = isset($_GET['q']) ? $_GET['q'] : '';
+        $search = trim($search);
+        $search = htmlspecialchars($search);
+
+        // Nombre maximum de produits à afficher par page
         $produits_par_page = 5;
 
-// Récupération du nombre total de produits
-        $requete = $pdo->query('SELECT COUNT(*) AS total FROM produits');
+        // Construction de la clause WHERE de la requête SQL en fonction de la recherche
+        $where_clause = '';
+        $query_params = [];
+        if (!empty($search)) {
+            $where_clause = 'WHERE nom LIKE :search';
+            $query_params['search'] = '%'.$search.'%';
+        }
+
+        // Récupération du nombre total de produits
+        $requete = $pdo->prepare('SELECT COUNT(*) AS total FROM produits '.$where_clause);
+        $requete->execute($query_params);
         $resultat = $requete->fetch();
         $total_produits = $resultat['total'];
 
-// Calcul du nombre total de pages
+        // Calcul du nombre total de pages
         $total_pages = ceil($total_produits / $produits_par_page);
 
-// Récupération du numéro de page demandée dans l'URL, ou utilisation de la première page par défaut
+        // Récupération du numéro de page demandée dans l'URL, ou utilisation de la première page par défaut
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-// Vérification que le numéro de page demandée est valide
+        // Vérification que le numéro de page demandée est valide
         if ($page < 1 || $page > $total_pages) {
             $page = 1;
         }
 
-// Calcul de l'offset de la plage de produits à afficher
+        // Calcul de l'offset de la plage de produits à afficher
         $offset = ($page - 1) * $produits_par_page;
 
-// Récupération des produits pour la page demandée
-        $requete = $pdo->prepare('SELECT * FROM produits ORDER BY id LIMIT :offset, :limite');
+        // Récupération des produits pour la page demandée
+        $requete = $pdo->prepare('SELECT * FROM produits '.$where_clause.' ORDER BY id LIMIT :offset, :limite');
         $requete->bindValue('offset', $offset, PDO::PARAM_INT);
         $requete->bindValue('limite', $produits_par_page, PDO::PARAM_INT);
-        $requete->execute();
+        $requete->execute($query_params);
         $produits = $requete->fetchAll();
+
+        // Affichage de la barre de recherche
+        $html .= '<form action="/catalogue" method="get">
+                   <label for="search">Rechercher :</label>
+                   <input type="text" id="search" name="q" placeholder="Rechercher..." value="'.$search.'">
+                   <button type="submit">Rechercher</button>
+                 </form>';
 
         // Affichage des produits
         foreach ($produits as $produit) {
