@@ -2,12 +2,14 @@
 
 namespace iutnc\crazyCharlieDay\action;
 
+use iutnc\crazyCharlieDay\db\ConnectionFactory;
+
 class CatalogueAction
 {
     public function execute(): string{
         $html = '';
         // Connexion à la base de données
-        $pdo = new PDO('mysql:host=localhost;dbname=ma_base_de_donnees', 'mon_utilisateur', 'mon_mot_de_passe');
+        $pdo = ConnectionFactory::makeConnection();
 
 // Nombre maximum de produits à afficher par page
         $produits_par_page = 5;
