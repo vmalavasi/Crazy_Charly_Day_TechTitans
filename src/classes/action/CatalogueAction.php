@@ -88,7 +88,7 @@ class CatalogueAction
                 $url .= '&q=' . urlencode($search);
             }
             $class = ($i == $page) ? 'active' : '';
-            $html .= '<a href="' . $url . '" class="' . $class . '">' . $i . '</a>';
+            $html .= '<a href="?action=catalogue&page=' . $i . '">' . $i . '</a>';
         }
         $html .= '</div>';
 
